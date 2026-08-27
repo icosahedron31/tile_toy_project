@@ -37,7 +37,7 @@ template<typename T>
 class Board {
 private:
     std::vector<std::vector<Tile<T>>>tiles;
-    Tile<T>* empty_tile;
+    Coordinate empty_tile;
     int n;
 public:
   //  Board(int n)=default;

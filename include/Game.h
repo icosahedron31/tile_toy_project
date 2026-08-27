@@ -1,14 +1,7 @@
 #ifndef GAME_H 
 #define GAME_H 
+#include "Board.h"
 
-
-enum Command{
-    Q = 'Q', 
-    E = 'E', 
-    W = 'W', 
-    S = 'S', 
-    N = 'N'
-};
 
 template <typename T> 
 class Game {
@@ -19,8 +12,6 @@ public:
     Game();
     ~Game();
     void play();
-    Command getCommand();
-    
 };
 
 #endif 

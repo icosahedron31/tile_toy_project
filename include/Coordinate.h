@@ -8,8 +8,8 @@ private:
     int i, j; 
     int n;
 public:
-    int get_i() {return i;}
-    int get_j() {return j;}
+    int get_i()const {return i;}
+    int get_j() const{return j;}
     
     Coordinate(int n =1000);
     Coordinate(int i, int j, int n = 1000); 

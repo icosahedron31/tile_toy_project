@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <iostream>
 template<typename T>
-Board<T>::Board(int n, std::vector<std::vector<Tile<T>>>initial) :n(n), empty_tile(&initial[0][0]) {
+Board<T>::Board(int n, std::vector<std::vector<Tile<T>>>initial) :n(n), empty_tile({0, 0, n}) {
     assert(initial.size() == n);
     assert(std::all_of(initial.begin(), initial.end(), 
     [n](std::vector<Tile<T>>v)->bool{
@@ -24,7 +24,7 @@ Tile<T> Board<T>::getTile(int i, int j) {
 }
 template<typename T> 
 void Board<T>::makeMove(Direction d) { 
-    int empty_x = empty_tile->co.get_i(), empty_y = empty_tile->co.get_j();
+    int empty_x =  empty_tile.get_i(), empty_y = empty_tile.get_j();
     int target_x, target_y;
     if(d == W) { 
         target_x = empty_x, target_y = empty_y + 1;
@@ -39,9 +39,9 @@ void Board<T>::makeMove(Direction d) {
         target_x = empty_x + 1, target_y = empty_y;
     }
 
-    swap(empty_tile->isEmpty, tiles[target_x][target_y].isEmpty);
-    swap(empty_tile->value, tiles[target_x][target_y].value);
-    empty_tile = &tiles[target_x][target_y];
+    swap(tiles[empty_x][empty_y].isEmpty, tiles[target_x][target_y].isEmpty);
+    swap(tiles[empty_x][empty_y].value, tiles[target_x][target_y].value);
+    empty_tile = {target_x, target_y, n};
 
 }
 
@@ -58,16 +58,16 @@ void Board<T>::print() {
 }
 template<typename T>
 bool Brain<T>::isMovePossible(const Board<T> * board, const Direction d) {
-    if(d == N && board->empty_tile->co.get_i() == board->n - 1) {
+    if(d == N && board->empty_tile.get_i() == board->n - 1) {
         return false; 
     } 
-    if(d == S && board->empty_tile->co.get_i() == 0) {
+    if(d == S && board->empty_tile.get_i() == 0) {
         return false; 
     }
-    if(d == W && board->empty_tile->co.get_j() == board->n - 1) {
+    if(d == W && board->empty_tile.get_j() == board->n - 1) {
         return false; 
     }
-    if(d == E && board->empty_tile->co.get_j() == 0) {
+    if(d == E && board->empty_tile.get_j() == 0) {
         return false; 
     }
     return true;
@@ -75,7 +75,7 @@ bool Brain<T>::isMovePossible(const Board<T> * board, const Direction d) {
 
 template<typename T>
 std::vector<Direction> Brain<T>::getPossibleDirections(const Board<T>*board) {
-    Tile x = *board->empty_tile;
+    Tile<T> x = board->tiles[board->empty_tile.get_i()][board->empty_tile.get_j()];
     std::vector<std::pair<Coordinate, Direction>> neighbors = x.getCoordinate().getNeighbors();
     std::vector<Direction>possible_directions;
     for(const auto & to : neighbors) {
