@@ -3,12 +3,12 @@
 
 template<typename T>
 GameManager<T>::GameManager(Board<T>* board) : board(board), move_count(0){
-    Brain<T>brain={};
+    
 }
 
 template<typename T>
 void GameManager<T>::showAvailableMoves() {
-    std::vector<Direction> d = brain.getPossibleDirections(board);
+    std::vector<Direction> d = Brain<T>::getPossibleDirections(board);
     cout << "Available Moves: ";
     for(const auto & to : d) {
         cout << static_cast<char>(to) << ' ';
@@ -23,7 +23,7 @@ void GameManager<T>::printBoard() {
 
 template <typename T> 
 bool GameManager<T>::makeMove(Direction d) {
-    if(!brain.isMovePossible(board, d)) {
+    if(!Brain<T>::isMovePossible(board, d)) {
         return false;
     }
     board->makeMove(d);

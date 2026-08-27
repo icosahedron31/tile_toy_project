@@ -5,17 +5,11 @@ using namespace std;
 #include "Coordinate.cpp"
 #include "Direction.h"
 #include "GameManager.cpp"
+#include "BoardInitializer.cpp"
 int main(){
     vector <vector<Tile<int>>> tiles; 
-    tiles.resize(4);
-    for(int i = 0; i < 4; i++) {
-        tiles[i].resize(4);
-        for(int j = 0; j < 4; j++) {
-            Coordinate x = {i, j, 4};
-            tiles[i][j] = {i * 4 + j, x, (i == 0 && j == 0)};
-        }
-    }
-    Board<int>board{4, tiles};
+    
+    Board<int>board = BoardInitializer::initialize_board<int>(4, 10);
     while(true) {
         GameManager<int>gm(&board);
         gm.printBoard();

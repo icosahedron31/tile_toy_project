@@ -25,8 +25,9 @@ class Board;
 template<typename T>
 class Brain{
 public:
-    std::vector<Direction>getPossibleDirections(const Board<T>* board);
-    bool isMovePossible(const Board<T>* board, const Direction d);
+    Brain()=delete;
+    static std::vector<Direction>getPossibleDirections(const Board<T>* board);
+    static bool isMovePossible(const Board<T>* board, const Direction d);
 };
 
 template<typename T>

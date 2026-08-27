@@ -5,7 +5,6 @@
 template<typename T> 
 class GameManager{
 private:
-    Brain <T> brain; 
     Board <T>* board; 
     int move_count;
 public:
