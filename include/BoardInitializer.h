@@ -6,5 +6,5 @@ namespace BoardInitializer{
     template<typename T>
     Board<T> initialize_board(int n, int moves);
 };
-
+#include "../src/BoardInitializer.tpp"
 #endif 

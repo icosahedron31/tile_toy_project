@@ -52,4 +52,6 @@ public:
    
     friend vector<Direction> Brain<T>::getPossibleDirections(const Board<T>* Board);
 };
+#include "../src/Board.tpp"
 #endif
+

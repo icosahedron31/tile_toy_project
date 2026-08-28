@@ -13,5 +13,6 @@ public:
     ~Game();
     void play();
 };
-
+#include "../src/Game.tpp"
 #endif 
+

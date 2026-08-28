@@ -16,5 +16,6 @@ public:
     bool makeMove(Direction d);
 
 };
-
+#include "../src/GameManager.tpp"
 #endif 
+

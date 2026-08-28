@@ -1,12 +1,12 @@
 #include <iostream> 
 using namespace std; 
-#include "Board.cpp"
+#include "Board.h"
 #include <error.h>
-#include "Coordinate.cpp"
+#include "Coordinate.h"
 #include "Direction.h"
-#include "GameManager.cpp"
-#include "BoardInitializer.cpp"
-#include "Game.cpp"
+#include "GameManager.h"
+#include "BoardInitializer.h"
+#include "Game.h"
 int main(){
     vector <vector<Tile<int>>> tiles; 
     

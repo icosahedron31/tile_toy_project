@@ -15,4 +15,6 @@ public:
     Coordinate(int i, int j, int n = 1000); 
     std::vector<std::pair<Coordinate, Direction>>getNeighbors();
 };
+#include "../src/Coordinate.tpp"
 #endif 
+
